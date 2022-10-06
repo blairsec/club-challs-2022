@@ -5,7 +5,7 @@ import path from 'path';
 const app = express()
 app.engine('hbs', exphbs.create({ extname: "hbs" }).engine) ;
 app.set("view engine", "hbs");
-const port = 3000;
+const port = 8080;
 app.use(express.static("./static"));
 
 app.get('/', (req, res) => {
@@ -19,8 +19,8 @@ app.get('/one', (req, res) => {
 
 app.get('/two', (req, res) => {
   // add blacklist
-  
-  res.render('two', { edit: !req.query.c, content: req.query.c });
+  let content = req.query.c;
+  res.render('two', { edit: !content, content: content });
 });
 
 app.get('/three', (req, res) => {
