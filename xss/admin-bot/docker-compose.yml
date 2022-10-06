@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+    admin_bot_test:
+        build: .
+        cap_add:
+            - SYS_ADMIN
+        ports:
+            - "6970:8080"

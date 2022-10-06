@@ -9,7 +9,7 @@ services:
         container_name: blairsec2022_xss_site
         deploy:
             restart_policy:
-                condition: always
+                condition: "on-failure"
         env_file: ./site.env
         expose:
             - "8080"
@@ -26,18 +26,27 @@ services:
 
     admin_bot:
         build:
-            context: ./admin_bot
-            args:
-                SOCKDIR: "/tmp/socks/"
-                LB_HOST: blairsec2022_xss_load_balancer
-                LB_PORT: "8081"
-        depends_on:
-            - load_balancer
+            context: ./admin-bot
+        ports: 
+            - "6970:8080"            
         deploy:
             replicas: ${ADMIN_REPLICAS}
             restart_policy:
-                condition: always
+                condition: "on-failure"
         env_file: ./admin_bot.env
         stop_grace_period: 3s
-        volumes:
-            - /tmp/dockersharedsocks:/tmp/socks
+                    
+        #     admin_bot:
+        #         build:
+        #             context: ./admin-bot
+        #             args:
+        #                 SOCKDIR: "/tmp/socks/"
+        #         deploy:
+        #             replicas: ${ADMIN_REPLICAS}
+        #             restart_policy:
+        #                 condition: "on-failure"
+        #         env_file: ./site.env
+        #         env_file: ./admin_bot.env
+        #         stop_grace_period: 3s
+        #         volumes:
+        #             - /tmp/dockersharedsocks:/tmp/socks
