@@ -25,6 +25,8 @@ services:
         stop_grace_period: 3s
 
     admin_bot:
+        cap_add:
+            - SYS_ADMIN
         build:
             context: ./admin-bot
         ports: 

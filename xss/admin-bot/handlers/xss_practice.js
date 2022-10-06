@@ -1,5 +1,5 @@
 module.exports = {
-    name: "xss practice",
+    name: "xss_practice",
     timeout: 5000,
     async execute(browser, url) {
         const page = await browser.newPage();

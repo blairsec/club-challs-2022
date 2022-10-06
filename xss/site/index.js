@@ -20,21 +20,21 @@ app.get('/one', (req, res) => {
 app.get('/two', (req, res) => {
   // no script??
   let content = req.query.c;
-  content = content.replace("script", "");
+  content = content?.replace(/script/g, "");
   res.render('two', { edit: !content, content: content });
 });
 
 app.get('/three', (req, res) => {
   // no angle brackets??
   let content = req.query.c;
-  content = content.replace("<", "");
+  content = content?.replace(/\</, "");
   res.render('three', { edit: !content, content: content });
 });
 
 app.get('/four', (req, res) => {
   // no letters
   let content = req.query.c;
-  content = content.replace(/[a-zA-Z]/g, "");
+  content = content?.replace(/[a-zA-Z]/g, "");
   res.render('four', { edit: !content, content: content });
 });
 
