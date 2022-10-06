@@ -1,0 +1,18 @@
+<h1>Part Four</h1>
+{{#if edit}}
+<p>Your objective: Get the cookie from the admin. This time, I've <span class="red">removed all of your letters</span>. Just to taunt you, I've also put your input into a <span class="blue">script</span> tag. 100% safe, 0% contrived! </p>
+<form method="GET" action="/four">
+  <textarea name="c" type="multiline" placeholder="your comment goes here"></textarea>
+  <input type="submit" value="create comment">
+</form>
+{{else}}
+<div>
+  <p>Your input:</p>
+  <div class="code">
+    <script>
+      {{{ content }}}
+    </script>
+  </div>
+</div>
+<button id="report_admin" href="admin.2022.xss.blairsec.mbhs.edu/four" target="_blank">⚠️ report to admin</button>
+{{/if}}

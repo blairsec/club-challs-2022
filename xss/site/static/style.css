@@ -19,6 +19,18 @@
   background-color: gold;
 }
 
+#source {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  text-decoration: none;
+  color: #003366;
+}
+
+#source:hover {
+  color: #336699;
+}
+
 body, html {
   background-color: aliceblue;
   font-family: "JetBrains Mono", monospace;

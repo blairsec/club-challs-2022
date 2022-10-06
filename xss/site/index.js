@@ -18,19 +18,24 @@ app.get('/one', (req, res) => {
 });
 
 app.get('/two', (req, res) => {
-  // add blacklist
+  // no script??
   let content = req.query.c;
+  content = content.replace("script", "");
   res.render('two', { edit: !content, content: content });
 });
 
 app.get('/three', (req, res) => {
-  // more blacklist
-  res.sendFile(path.join(__dirname, 'index.html'));
+  // no angle brackets??
+  let content = req.query.c;
+  content = content.replace("<", "");
+  res.render('three', { edit: !content, content: content });
 });
 
 app.get('/four', (req, res) => {
-  // something else
-  res.sendFile(path.join(__dirname, 'index.html'));
+  // no letters
+  let content = req.query.c;
+  content = content.replace(/[a-zA-Z]/g, "");
+  res.render('four', { edit: !content, content: content });
 });
 
 
